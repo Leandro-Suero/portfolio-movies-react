@@ -1,11 +1,27 @@
 import React from "react";
+import { Provider } from "react-redux";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PropTypes from "prop-types";
 
-function App() {
+import Home from "./components/pages/Home";
+import GenericNotFound from "./components/pages/GenericNotFound";
+import "./assets/tailwind.output.css";
+
+function App({ store }) {
   return (
-    <div className="App">
-      <h1>Hello World</h1>
-    </div>
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          {/* <Route path="/item/:id" component={ItemDetail} /> */}
+          <Route component={GenericNotFound} />
+        </Switch>
+      </Router>
+    </Provider>
   );
 }
+App.propTypes = {
+  store: PropTypes.object.isRequired,
+};
 
 export default App;
