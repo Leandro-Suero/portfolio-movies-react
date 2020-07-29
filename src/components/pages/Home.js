@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { useDispatch, useSelector } from "react-redux";
 
 import Header from "../layout/Header";
-import RecommendedMovies from "../RecommendedMovies";
+import RecommendedMovies from "../layout/RecommendedMovies";
 import { getMoviesConfig } from "../../redux/actions/movieActions";
 
 export const Home = ({ config, getMoviesConfig }) => {

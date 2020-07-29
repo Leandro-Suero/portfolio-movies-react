@@ -6,9 +6,9 @@ export const ResultsMovies = ({ movieResults }) => {
   console.log("results movies");
   console.log(movieResults);
   return (
-    <div>
+    <section>
       <h1>Results movies</h1>
-    </div>
+    </section>
   );
 };
 

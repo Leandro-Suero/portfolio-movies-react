@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { getRecommendedMovies } from "../redux/actions/movieActions";
+import { getRecommendedMovies } from "../../redux/actions/movieActions";
+import ShowsSlider from "../ShowsSlider";
 
 const RecommendedMovies = ({ recommendedMovies, getRecommendedMovies }) => {
   // const dispatch = useDispatch();
@@ -14,14 +15,9 @@ const RecommendedMovies = ({ recommendedMovies, getRecommendedMovies }) => {
   });
 
   return (
-    <div>
-      <h1>Recommended movies </h1>
-      {recommendedMovies.length === 0 ? (
-        <h2>Loading...</h2>
-      ) : (
-        recommendedMovies.map((movie) => <p>{movie.title}</p>)
-      )}
-    </div>
+    <section>
+      <ShowsSlider shows={recommendedMovies} title={"Recommended Movies"} />
+    </section>
   );
 };
 
