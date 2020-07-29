@@ -27,7 +27,7 @@ RecommendedMovies.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  recommendedMovies: state.movies.recommendedMovies,
+  recommendedMovies: state.shows.recommendedMovies,
 });
 
 const mapDispatchToProps = { getRecommendedMovies };

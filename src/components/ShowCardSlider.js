@@ -31,7 +31,7 @@ ShowCardSlider.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  configImg: state.movies.config,
+  configImg: state.shows.config,
 });
 
 const mapDispatchToProps = {};
