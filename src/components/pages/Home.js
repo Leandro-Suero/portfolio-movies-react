@@ -5,8 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Header from "../layout/Header";
 import RecommendedMovies from "../RecommendedMovies";
+import { getMoviesConfig } from "../../redux/actions/movieActions";
 
-export const Home = () => {
+export const Home = ({ config, getMoviesConfig }) => {
+  useEffect(() => {
+    if (Object.keys(config).length === 0 && config.constructor === Object) {
+      getMoviesConfig();
+    }
+  });
+
   return (
     <React.Fragment>
       {/* <Header branding="MOVIES" /> */}
@@ -16,15 +23,16 @@ export const Home = () => {
 };
 
 Home.propTypes = {
-  recommendedMovies: PropTypes.array,
+  config: PropTypes.object.isRequired,
+  getMoviesConfig: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  // recommendedMovies: state.recommendedMovies,
-  // queryString: state.queryString,
-  // movieResults: state.movieResults,
+  config: state.movies.config,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  getMoviesConfig,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

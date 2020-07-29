@@ -1,4 +1,5 @@
 import {
+  GET_MOVIES_CONFIG,
   GET_RECOMMENDED_MOVIES,
   GET_MOVIE_RESULTS,
   GET_MOVIE_DETAILS,
@@ -7,6 +8,13 @@ import { apiCall } from "../api";
 
 //apiCall = (url, data, headers, method, extraParam)
 
+export const getMoviesConfig = () => async (dispatch) => {
+  const res = await apiCall("/configuration", null, null, "GET", {});
+  dispatch({
+    type: GET_MOVIES_CONFIG,
+    payload: res.data,
+  });
+};
 export const getRecommendedMovies = () => async (dispatch) => {
   const res = await apiCall("/movie/popular", null, null, "GET", {});
   dispatch({
