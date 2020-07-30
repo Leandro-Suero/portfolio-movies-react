@@ -6,7 +6,7 @@ import { searchShows } from "../redux/actions/movieActions";
 
 function MultiSearch({ searchShows }) {
   const [showType, setShowType] = useState("multi"); // [multi,movie,tv]
-  const [query, setQuery] = useState("strange");
+  const [query, setQuery] = useState("");
 
   const getShows = () => {
     searchShows(query, showType);
@@ -46,7 +46,6 @@ function MultiSearch({ searchShows }) {
               id=""
               onKeyPress={(e) => handleKeyPress(e)}
               placeholder="search for movies and series..."
-              x-model="q"
               className="w-full pl-4 text-sm outline-none focus:outline-none bg-transparent"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
@@ -55,7 +54,6 @@ function MultiSearch({ searchShows }) {
               <select
                 name=""
                 id=""
-                x-model="image_type"
                 className="text-sm outline-none focus:outline-none bg-transparent ml-4"
                 value={showType}
                 onChange={(e) => setShowType(e.target.value)}
