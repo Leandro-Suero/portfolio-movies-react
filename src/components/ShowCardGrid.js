@@ -20,16 +20,6 @@ function ShowCardGrid({ show, configImg }) {
   return (
     <div>
       <Link to={`/${show.media_type}/${show.id}`} className="hover:opacity-75">
-        {/* <picture>
-              <source
-                srcset={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
-                type="image/jpeg"
-              />
-              <img
-                src="https://via.placeholder.com/500?text=error"
-                alt="Image error"
-              />
-            </picture> */}
         <img
           className="w-full h-full object-cover"
           src={picture}
