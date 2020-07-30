@@ -53,7 +53,7 @@ export class ShowsSlider extends Component {
     };
 
     return (
-      <div className="w-9/12 sm:w-9/12 md:w-11/12 lg:w-4/5 mx-auto">
+      <React.Fragment>
         <h1 className="text-2xl my-3">{this.props.title}</h1>
         <div>
           <Carousel
@@ -80,7 +80,7 @@ export class ShowsSlider extends Component {
             ))}
           </Carousel>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

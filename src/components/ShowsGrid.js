@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-function ShowsGrid({ showsList }) {
+function ShowsGrid({ shows }) {
   console.log("movie grid");
-  console.log(showsList);
+  console.log(shows);
   return <div>MOVIE GRID</div>;
 }
 
 ShowsGrid.propTypes = {
-  showsList: PropTypes.array.isRequired,
+  shows: PropTypes.array.isRequired,
 };
 
 export default ShowsGrid;
