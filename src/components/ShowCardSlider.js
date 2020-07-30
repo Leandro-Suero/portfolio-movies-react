@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
-const ShowCardSlider = ({ show, configImg }) => {
+const ShowCardSlider = ({ showType, show, configImg }) => {
   const [picture, setPicture] = useState(
     "https://via.placeholder.com/185?text=loading"
   );
@@ -17,18 +18,21 @@ const ShowCardSlider = ({ show, configImg }) => {
   }, [configImg, show]);
 
   return (
-    <div key={show.id} className="">
-      <img
-        src={picture}
-        alt={show.title}
-        className="object-cover max-w-md h-full"
-      />
+    <div>
+      <Link to={`${showType}/${show.id}`}>
+        <img
+          src={picture}
+          alt={show.title}
+          className="object-cover max-w-md h-full"
+        />
+      </Link>
       <p>{show.title}</p>
     </div>
   );
 };
 
 ShowCardSlider.propTypes = {
+  showType: PropTypes.string.isRequired,
   configImg: PropTypes.object.isRequired,
   show: PropTypes.object.isRequired,
 };

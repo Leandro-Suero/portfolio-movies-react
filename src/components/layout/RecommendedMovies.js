@@ -16,7 +16,11 @@ const RecommendedMovies = ({ recommendedMovies, getRecommendedMovies }) => {
 
   return (
     <section>
-      <ShowsSlider shows={recommendedMovies} title={"Recommended Movies"} />
+      <ShowsSlider
+        shows={recommendedMovies}
+        title={"Recommended Movies"}
+        showType="movie"
+      />
     </section>
   );
 };

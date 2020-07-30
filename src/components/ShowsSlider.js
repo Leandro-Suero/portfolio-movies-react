@@ -7,7 +7,7 @@ import "react-multi-carousel/lib/styles.css";
 
 import ShowCardSlider from "./ShowCardSlider";
 
-const ShowsSlider = ({ title, shows, configImg }) => {
+const ShowsSlider = ({ showType, title, shows, configImg }) => {
   const responsive = {
     desktoplg: {
       breakpoint: { max: 3000, min: 1600 },
@@ -71,7 +71,12 @@ const ShowsSlider = ({ title, shows, configImg }) => {
           itemClass=""
         >
           {shows.map((show) => (
-            <ShowCardSlider key={show.id} show={show} configImg={configImg} />
+            <ShowCardSlider
+              key={show.id}
+              show={show}
+              configImg={configImg}
+              showType={showType}
+            />
           ))}
         </Carousel>
       </div>
@@ -80,6 +85,7 @@ const ShowsSlider = ({ title, shows, configImg }) => {
 };
 
 ShowsSlider.propTypes = {
+  showType: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   shows: PropTypes.array.isRequired,
   configImg: PropTypes.object.isRequired,
