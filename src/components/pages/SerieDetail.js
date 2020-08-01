@@ -6,8 +6,14 @@ import { useParams } from "react-router-dom";
 import { getCurrentShow } from "../../redux/actions/movieActions";
 import { SerieDetailMobile } from "../SerieDetailMobile";
 import { SerieDetailDesktop } from "../SerieDetailDesktop";
+import { getApiConfig } from "../../redux/actions/movieActions";
 
-export const SerieDetail = ({ currentShow, getCurrentShow }) => {
+export const SerieDetail = ({
+  currentShow,
+  getCurrentShow,
+  config,
+  getApiConfig,
+}) => {
   let { id } = useParams();
   const mobile_breakpoint = parseInt(process.env.REACT_APP_MOBILE_BREAKPOINT);
   const [loading, setLoading] = useState(true);
@@ -44,14 +50,22 @@ export const SerieDetail = ({ currentShow, getCurrentShow }) => {
     fetchData();
   }, [loading]);
 
+  /* FETCH CONFIG HOOK */
+  useEffect(() => {
+    //if no config already
+    if (Object.keys(config).length === 0 && config.constructor === Object) {
+      getApiConfig();
+    }
+  });
+
   return (
     <div>
       {loading ? (
         <h2>Loading...</h2>
       ) : isMobile ? (
-        <SerieDetailMobile show={currentShow} />
+        <SerieDetailMobile show={currentShow} config={config} />
       ) : (
-        <SerieDetailDesktop show={currentShow} />
+        <SerieDetailDesktop show={currentShow} config={config} />
       )}
     </div>
   );
@@ -60,12 +74,14 @@ export const SerieDetail = ({ currentShow, getCurrentShow }) => {
 SerieDetail.propTypes = {
   currentShow: PropTypes.object.isRequired,
   getCurrentShow: PropTypes.func.isRequired,
+  config: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentShow: state.shows.currentShow,
+  config: state.shows.config,
 });
 
-const mapDispatchToProps = { getCurrentShow };
+const mapDispatchToProps = { getCurrentShow, getApiConfig };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SerieDetail);
