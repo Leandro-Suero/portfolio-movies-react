@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import ReactStarReview from "react-star-review";
+import backArrow from "../assets/left-arrow.svg";
 
 export const SerieDetailMobile = ({ show, config }) => {
-  const moneyFormater = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+  let history = useHistory();
   const viewport_width = window.innerWidth;
   const [picture, setPicture] = useState(
     "https://via.placeholder.com/500?text=loading"
@@ -34,6 +33,18 @@ export const SerieDetailMobile = ({ show, config }) => {
 
   return (
     <section className="bg-white min-h-screen relative flex flex-col content-center">
+      {/* NAVIGATION */}
+      <nav
+        className="bg-transparent fixed z-50"
+        style={{ top: "1rem", marginLeft: "1rem" }}
+      >
+        <img
+          src={backArrow}
+          alt="Back arrow"
+          className="h-8"
+          onClick={() => history.goBack()}
+        />
+      </nav>
       {/* BACKGROUND */}
       <div className="absolute">
         <img src={picture} alt="Backdrop image" className="z-10" />
@@ -94,9 +105,12 @@ export const SerieDetailMobile = ({ show, config }) => {
           <ReactStarReview rating={show.vote_average / 2} />
         </div>
         {/* GENRE TAGS */}
-        <div className="flex justify-center my-4">
+        <div className="flex items-center justify-center my-4 text-center">
           {show.genres.map((genre) => (
-            <span className="badge-teal inline-block bg-teal-200 text-teal-600 text-xs rounded-full mx-1 px-2 uppercase font-semibold tracking-wide">
+            <span
+              key={genre.id}
+              className="badge-teal inline-block bg-teal-200 text-teal-600 text-xs rounded-full mx-1 px-2 uppercase font-semibold tracking-wide"
+            >
               {genre.name}
             </span>
           ))}
