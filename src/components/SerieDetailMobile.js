@@ -41,13 +41,13 @@ export const SerieDetailMobile = ({ show, config }) => {
         <img
           src={backArrow}
           alt="Back arrow"
-          className="h-8"
+          className="h-8 cursor-pointer"
           onClick={() => history.goBack()}
         />
       </nav>
       {/* BACKGROUND */}
-      <div className="absolute">
-        <img src={picture} alt="Backdrop image" className="z-10" />
+      <div className="fixed">
+        <img src={picture} alt="Backdrop" className="z-10" />
         <div
           id="white-gradient"
           className="absolute h-10 w-full"
@@ -124,7 +124,8 @@ export const SerieDetailMobile = ({ show, config }) => {
             <a
               href={show.homepage}
               target="_blank"
-              className="inline-block text-center bg-teal-500 text-white text-md rounded-full py-2 px-4 uppercase font-semibold "
+              className="inline-block text-center bg-teal-500 text-white text-md rounded-full py-2 px-4 uppercase font-semibold"
+              style={{ animation: "pulse 2s infinite" }}
             >
               VISIT HOMEPAGE
             </a>

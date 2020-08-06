@@ -129,7 +129,7 @@ export const SerieDetailDesktop = ({ show, config }) => {
               <a
                 href={show.homepage}
                 target="_blank"
-                className="inline-block text-center bg-teal-500 text-white text-md rounded-full py-2 px-4 uppercase font-semibold "
+                className="inline-block text-center bg-teal-500 text-white text-md rounded-full py-2 px-6 uppercase font-semibold text-xl"
                 style={{ animation: "pulse-light 2s infinite" }}
               >
                 VISIT HOMEPAGE

@@ -45,12 +45,12 @@ export const MovieDetailMobile = ({ show, config }) => {
         <img
           src={backArrow}
           alt="Back arrow"
-          className="h-8"
+          className="h-8 cursor-pointer"
           onClick={() => history.goBack()}
         />
       </nav>
       {/* BACKGROUND */}
-      <div className="absolute">
+      <div className="fixed">
         <img src={picture} alt="Backdrop image" className="z-10" />
         <div
           id="white-gradient"
@@ -86,7 +86,10 @@ export const MovieDetailMobile = ({ show, config }) => {
             {new Date(show.release_date).toLocaleDateString()}
           </span>
           <span className="badge-gray inline-block bg-gray-200 text-gray-800 text-xs rounded-full mx-1 px-2 font-semibold tracking-wide">
-            {Math.floor(show.runtime / 60) + "hs " + (show.runtime % 60) + "m"}
+            {Math.floor(show.runtime / 60) +
+              "hr " +
+              (show.runtime % 60) +
+              "min"}
           </span>
         </div>
       </div>
@@ -135,7 +138,8 @@ export const MovieDetailMobile = ({ show, config }) => {
             <a
               href={show.homepage}
               target="_blank"
-              className="inline-block text-center bg-teal-500 text-white text-md rounded-full py-2 px-4 uppercase font-semibold "
+              className="inline-block text-center bg-teal-500 text-white text-md rounded-full py-2 px-4 uppercase font-semibold"
+              style={{ animation: "pulse 2s infinite" }}
             >
               VISIT HOMEPAGE
             </a>
