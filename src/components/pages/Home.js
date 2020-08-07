@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { useDispatch, useSelector } from "react-redux";
 
 import Header from "../layout/Header";
 import Footer from "../layout/Footer";
@@ -21,12 +20,14 @@ export const Home = ({ config, getApiConfig, searchResults }) => {
 
   return (
     <React.Fragment>
+      <Header />
       <div className="w-11/12 sm:w-9/12 md:w-11/12 lg:w-4/5 mx-auto">
-        {/* <Header branding="MOVIES" /> */}
         <MultiSearch />
         {searchResults.length === 0 ? (
           <React.Fragment>
+            <br />
             <RecommendedMovies />
+            <br />
             <RecommendedSeries />
           </React.Fragment>
         ) : (

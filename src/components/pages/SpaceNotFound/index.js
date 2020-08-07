@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./style.css";
 
 export default function index() {
   return (
-    <div>
+    <div id="404">
       <div id="particles" class="particles">
         <span></span>
         <span></span>
@@ -20,7 +21,7 @@ export default function index() {
         <span></span>
       </div>
 
-      <main>
+      <div id="main">
         <section>
           <h1>Page Not Found!</h1>
           <div>
@@ -34,10 +35,15 @@ export default function index() {
             you're looking for.
           </p>
           <div>
-            <button>Back to Home Page</button>
+            <Link
+              to="/"
+              class="inline-block text-center bg-teal-500 text-white rounded-full py-2 px-6 uppercase font-semibold text-base"
+            >
+              Back to Home Page
+            </Link>
           </div>
         </section>
-      </main>
+      </div>
     </div>
   );
 }

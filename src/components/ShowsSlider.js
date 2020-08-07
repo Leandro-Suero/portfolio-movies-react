@@ -49,7 +49,7 @@ const ShowsSlider = ({ showType, title, shows, configImg }) => {
 
   return (
     <React.Fragment>
-      <h1 className="text-2xl my-3">{title}</h1>
+      <h1 className="text-2xl my-3 text-white">{title}</h1>
       <div>
         <Carousel
           swipeable={true}

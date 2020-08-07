@@ -26,7 +26,6 @@ const ShowCardSlider = ({ showType, show, configImg }) => {
           className="object-cover max-w-md h-full"
         />
       </Link>
-      <p>{show.title}</p>
     </div>
   );
 };

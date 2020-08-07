@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
+import Logo from "../components/layout/Logo";
 import ReactStarReview from "react-star-review";
 import backArrow from "../assets/left-arrow.svg";
 
@@ -38,16 +40,19 @@ export const MovieDetailDesktop = ({ show, config }) => {
     <section className="min-vw-100 min-h-screen">
       {/* NAVIGATION */}
       <nav
-        className="bg-transparent fixed z-50"
+        className="bg-transparent fixed z-50 flex"
         style={{ top: "1rem", marginLeft: "1rem" }}
       >
         <img
           src={backArrow}
           alt="Back arrow"
-          className="h-8 cursor-pointer rounded-full"
+          className="h-8 cursor-pointer rounded-full mr-4"
           onClick={() => history.goBack()}
           style={{ animation: "pulse-light 2s infinite" }}
         />
+        <Link to="/">
+          <Logo className="" />
+        </Link>
       </nav>
       {/* BACKGROUND */}
       <div className="fixed">
@@ -67,7 +72,7 @@ export const MovieDetailDesktop = ({ show, config }) => {
         />
         <div className="w-4/6 z-10 flex flex-col items-center content-center justify-evenly">
           <div className="bg-white bg-opacity-75 flex flex-col rounded">
-            <h1 className="text-center text-5xl font-serif font-bold px-4">
+            <h1 className="text-center text-4xl font-serif font-bold px-4">
               {show.title}
             </h1>
           </div>
@@ -103,7 +108,7 @@ export const MovieDetailDesktop = ({ show, config }) => {
                 </span>
               </div>
               <div>
-                <h2 className="text-3xl">Overview</h2>
+                <h2 className="text-2xl">Overview</h2>
               </div>
               <div className="">
                 <span className="badge-gray inline-block bg-gray-200 text-gray-800 text-xs rounded-full mx-1 px-2 font-semibold tracking-wide">
@@ -116,7 +121,7 @@ export const MovieDetailDesktop = ({ show, config }) => {
             </div>
             {/* OVERVIEW */}
             <div
-              className="text-center my-2 p-2 text-base"
+              className="text-center my-2 p-2 text-xs"
               style={{ textShadow: "-1px -1px 4px white" }}
             >
               {show.overview}
@@ -124,7 +129,7 @@ export const MovieDetailDesktop = ({ show, config }) => {
           </div>
           <div className="bg-white bg-opacity-75 flex flex-col my-4 rounded">
             {/* LANGUAGES */}
-            <p className="text-center">
+            <p className="text-center mx-2">
               <span className="font-semibold">Language(s):</span>{" "}
               {show.spoken_languages.map((lang) => lang.name).toString()}{" "}
             </p>
