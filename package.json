@@ -1,6 +1,6 @@
 {
-  "name": "000-base-react-router-redux-axios-tailwind",
-  "version": "0.1.0",
+  "name": "moviseries",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
