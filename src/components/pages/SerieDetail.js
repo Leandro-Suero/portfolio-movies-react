@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -15,6 +15,8 @@ export const SerieDetail = ({
   getApiConfig,
 }) => {
   let { id } = useParams();
+  const fixedShow = useRef();
+  const fixedConfig = useRef();
   const mobile_breakpoint = parseInt(process.env.REACT_APP_MOBILE_BREAKPOINT);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(true);
@@ -36,11 +38,14 @@ export const SerieDetail = ({
 
   /* FETCH SERIE DATA HOOK */
   useEffect(() => {
+    fixedShow.current = currentShow;
+  });
+  useEffect(() => {
     const fetchData = async () => {
       if (
-        (Object.keys(currentShow).length === 0 &&
-          currentShow.constructor === Object) ||
-        currentShow.id !== id
+        (Object.keys(fixedShow.current).length === 0 &&
+          fixedShow.current.constructor === Object) ||
+        fixedShow.current.id !== id
       ) {
         await getCurrentShow(id, "tv");
         setLoading(false);
@@ -52,11 +57,17 @@ export const SerieDetail = ({
 
   /* FETCH CONFIG HOOK */
   useEffect(() => {
+    fixedConfig.current = config;
+  });
+  useEffect(() => {
     //if no config already
-    if (Object.keys(config).length === 0 && config.constructor === Object) {
+    if (
+      Object.keys(fixedConfig.current).length === 0 &&
+      fixedConfig.current.constructor === Object
+    ) {
       getApiConfig();
     }
-  });
+  }, [getApiConfig]);
 
   return (
     <div>
