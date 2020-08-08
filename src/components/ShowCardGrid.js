@@ -3,6 +3,21 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 function ShowCardGrid({ show, configImg }) {
+  let showType, showName;
+  if (show.hasOwnProperty("media_type")) {
+    showType = show.media_type;
+    if (showType === "movie") {
+      showName = show.title;
+    } else {
+      showName = show.name;
+    }
+  } else if (show.hasOwnProperty("title")) {
+    showType = "movie";
+    showName = show.title;
+  } else {
+    showType = "tv";
+    showName = show.name;
+  }
   const [picture, setPicture] = useState(
     "https://via.placeholder.com/500?text=loading"
   );
@@ -11,20 +26,23 @@ function ShowCardGrid({ show, configImg }) {
   useEffect(() => {
     let poster_url =
       configImg.images?.base_url === undefined || show?.poster_path === null
-        ? "https://via.placeholder.com/500?text=error"
+        ? `https://via.placeholder.com/500?text=${showName}`
         : `${configImg.images.base_url}${configImg.images.poster_sizes[4]}${show.poster_path}`;
 
     setPicture(poster_url);
-  }, [configImg, show]);
+  }, [configImg, show, showName]);
 
   return (
     <div>
-      <Link to={`/${show.media_type}/${show.id}`} className="hover:opacity-75">
+      <Link to={`/${showType}/${show.id}`}>
         <img
           className="w-full h-full object-cover"
           src={picture}
-          alt={"img error: " + show.title}
+          alt={"error: " + showName}
         />
+        {picture.includes("https://via.placeholder.com") && (
+          <h3 className="text-white text-center text-lg mb-1">{showName}</h3>
+        )}
       </Link>
     </div>
   );
