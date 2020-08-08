@@ -54,7 +54,7 @@ export const SerieDetailDesktop = ({ show, config }) => {
       <div className="fixed">
         <img
           src={picture}
-          alt="Backdrop image"
+          alt="Backdrop"
           className="w-screen min-h-screen object-cover z-0"
         />
       </div>
@@ -134,6 +134,7 @@ export const SerieDetailDesktop = ({ show, config }) => {
               <a
                 href={show.homepage}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block text-center bg-teal-500 text-white text-md rounded-full py-2 px-6 uppercase font-semibold text-xl"
                 style={{ animation: "pulse-light 2s infinite" }}
               >

@@ -14,7 +14,6 @@ export const MovieDetailDesktop = ({ show, config }) => {
     style: "currency",
     currency: "USD",
   });
-  const viewport_width = window.innerWidth;
   const [picture, setPicture] = useState(
     "https://via.placeholder.com/1000?text=loading"
   );
@@ -58,7 +57,7 @@ export const MovieDetailDesktop = ({ show, config }) => {
       <div className="fixed">
         <img
           src={picture}
-          alt="Backdrop image"
+          alt="Backdrop"
           className="w-screen min-h-screen object-cover z-0"
         />
       </div>
@@ -151,6 +150,7 @@ export const MovieDetailDesktop = ({ show, config }) => {
               <a
                 href={show.homepage}
                 target="_blank"
+                rel="noopener noreferrer"
                 className="inline-block text-center bg-teal-500 text-white text-md rounded-full py-2 px-6 uppercase font-semibold text-xl"
                 style={{ animation: "pulse-light 2s infinite" }}
               >

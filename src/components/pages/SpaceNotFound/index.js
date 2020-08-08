@@ -6,7 +6,7 @@ import "./style.css";
 export default function index() {
   return (
     <div id="404">
-      <div id="particles" class="particles">
+      <div id="particles" className="particles">
         <span></span>
         <span></span>
         <span></span>
@@ -26,7 +26,7 @@ export default function index() {
           <h1>Page Not Found!</h1>
           <div>
             <span>4</span>
-            <span class="circle">0</span>
+            <span className="circle">0</span>
             <span>4</span>
           </div>
           <p>
@@ -37,7 +37,7 @@ export default function index() {
           <div>
             <Link
               to="/"
-              class="inline-block text-center bg-teal-500 text-white rounded-full py-2 px-6 uppercase font-semibold text-base"
+              className="inline-block text-center bg-teal-500 text-white rounded-full py-2 px-6 uppercase font-semibold text-base"
             >
               Back to Home Page
             </Link>

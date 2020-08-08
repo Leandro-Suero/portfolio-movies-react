@@ -32,9 +32,9 @@ export const MovieDetail = ({
       //undo event listener
       window.removeEventListener("resize", updateDeviceType);
     };
-  }, [isMobile]);
+  }, [isMobile, mobile_breakpoint]);
 
-  /* FETCH SERIE DATA HOOK */
+  /* FETCH MOVIE DATA HOOK */
   useEffect(() => {
     const fetchData = async () => {
       if (
@@ -42,13 +42,13 @@ export const MovieDetail = ({
           currentShow.constructor === Object) ||
         currentShow.id !== id
       ) {
-        const res = await getCurrentShow(id, "movie");
+        await getCurrentShow(id, "movie");
         setLoading(false);
       }
     };
-    //ask for serie details
+    //ask for movie details
     fetchData();
-  }, [loading]);
+  }, [loading, id, getCurrentShow]);
 
   /* FETCH CONFIG HOOK */
   useEffect(() => {

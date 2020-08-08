@@ -51,7 +51,7 @@ export const MovieDetailMobile = ({ show, config }) => {
       </nav>
       {/* BACKGROUND */}
       <div className="fixed">
-        <img src={picture} alt="Backdrop image" className="z-10" />
+        <img src={picture} alt="Backdrop" className="z-10" />
         <div
           id="white-gradient"
           className="absolute h-10 w-full"
@@ -138,6 +138,7 @@ export const MovieDetailMobile = ({ show, config }) => {
             <a
               href={show.homepage}
               target="_blank"
+              rel="noopener noreferrer"
               className="inline-block text-center bg-teal-500 text-white text-md rounded-full py-2 px-4 uppercase font-semibold"
               style={{ animation: "pulse 2s infinite" }}
             >

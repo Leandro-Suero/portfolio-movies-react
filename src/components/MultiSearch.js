@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { searchShows } from "../redux/actions/movieActions";
 
 function MultiSearch({ searchShows }) {
+  let history = useHistory();
   const [showType, setShowType] = useState("multi"); // [multi,movie,tv]
   const [query, setQuery] = useState("");
 
@@ -16,6 +18,9 @@ function MultiSearch({ searchShows }) {
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       getShows();
+      if (history.location.pathname !== "/search") {
+        history.push("/search");
+      }
     }
   };
 
@@ -42,6 +47,7 @@ function MultiSearch({ searchShows }) {
             </button>
             <input
               type="search"
+              autoFocus="autofocus"
               name=""
               id=""
               onKeyPress={(e) => handleKeyPress(e)}

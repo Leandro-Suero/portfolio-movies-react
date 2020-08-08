@@ -32,7 +32,7 @@ export const SerieDetail = ({
       //undo event listener
       window.removeEventListener("resize", updateDeviceType);
     };
-  }, [isMobile]);
+  }, [isMobile, mobile_breakpoint]);
 
   /* FETCH SERIE DATA HOOK */
   useEffect(() => {
@@ -42,13 +42,13 @@ export const SerieDetail = ({
           currentShow.constructor === Object) ||
         currentShow.id !== id
       ) {
-        const res = await getCurrentShow(id, "tv");
+        await getCurrentShow(id, "tv");
         setLoading(false);
       }
     };
     //ask for serie details
     fetchData();
-  }, [loading]);
+  }, [loading, id, getCurrentShow]);
 
   /* FETCH CONFIG HOOK */
   useEffect(() => {
