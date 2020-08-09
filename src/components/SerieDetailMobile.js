@@ -48,7 +48,7 @@ export const SerieDetailMobile = ({ show, config }) => {
       </nav>
       {/* BACKGROUND */}
       <div className="fixed">
-        <img src={picture} alt="Backdrop" className="z-10" />
+        <img src={picture} alt="Backdrop" className="z-0" />
         <div
           id="white-gradient"
           className="absolute h-10 w-full"
@@ -89,7 +89,7 @@ export const SerieDetailMobile = ({ show, config }) => {
           </div>
           <div className="flex flex-col">
             <span className="badge-gray inline-block bg-gray-200 text-gray-800 text-xs rounded-full m-1 px-2 font-semibold tracking-wide">
-              {show.number_of_episodes} episodes
+              {show.number_of_episodes} eps.
             </span>
             <span className="badge-gray inline-block bg-gray-200 text-gray-800 text-xs rounded-full mx-1 px-2 font-semibold tracking-wide">
               {show.episode_run_time}mins
@@ -97,7 +97,7 @@ export const SerieDetailMobile = ({ show, config }) => {
           </div>
         </div>
       </div>
-      <article className="mx-4">
+      <article className="mx-4 z-20 bg-white rounded-t-lg">
         {/* TITLE */}
         <h1 className="text-center text-3xl font-serif font-bold">
           {show.name}

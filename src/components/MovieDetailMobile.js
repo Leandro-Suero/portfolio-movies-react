@@ -52,7 +52,7 @@ export const MovieDetailMobile = ({ show, config }) => {
       </nav>
       {/* BACKGROUND */}
       <div className="fixed">
-        <img src={picture} alt="Backdrop" className="z-10" />
+        <img src={picture} alt="Backdrop" className="z-0" />
         <div
           id="white-gradient"
           className="absolute h-10 w-full"
@@ -94,7 +94,7 @@ export const MovieDetailMobile = ({ show, config }) => {
           </span>
         </div>
       </div>
-      <article className="mx-4">
+      <article className="mx-4 z-20 bg-white rounded-t-lg">
         {/* TITLE */}
         <h1 className="text-center text-3xl font-serif font-bold">
           {show.title}
