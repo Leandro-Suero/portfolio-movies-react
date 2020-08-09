@@ -6,7 +6,7 @@ export default function Footer() {
       <a
         href="https://www.themoviedb.org"
         target="_new"
-        className="text-teal-600 font-semibold flex justify-center items-center w-full flex-col sm:flex-row"
+        className="text-teal-400 font-semibold flex justify-center items-center w-full flex-col sm:flex-row"
       >
         <p>
           This product uses the TMDb API but is not endorsed or certified by
