@@ -18,9 +18,12 @@ export const Home = ({ config, getApiConfig }) => {
   });
 
   return (
-    <React.Fragment>
+    <main className="min-h-screen flex flex-col">
       <Header />
-      <div className="w-11/12 sm:w-9/12 md:w-11/12 lg:w-4/5 mx-auto">
+      <div
+        className="w-11/12 sm:w-9/12 md:w-11/12 lg:w-4/5 mx-auto"
+        style={{ flex: "1 0 auto" }}
+      >
         <MultiSearch />
         <React.Fragment>
           <br />
@@ -29,8 +32,8 @@ export const Home = ({ config, getApiConfig }) => {
           <RecommendedSeries />
         </React.Fragment>
       </div>
-      <Footer />
-    </React.Fragment>
+      <Footer className="flex-shrink-0" />
+    </main>
   );
 };
 
