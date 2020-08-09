@@ -25,9 +25,10 @@ function ShowCardGrid({ show, configImg }) {
   //poster URL
   useEffect(() => {
     let poster_url =
-      configImg.images?.base_url === undefined || show?.poster_path === null
+      configImg.images?.secure_base_url === undefined ||
+      show?.poster_path === null
         ? `https://via.placeholder.com/500?text=${showName}`
-        : `${configImg.images.base_url}${configImg.images.poster_sizes[4]}${show.poster_path}`;
+        : `${configImg.images.secure_base_url}${configImg.images.poster_sizes[4]}${show.poster_path}`;
 
     setPicture(poster_url);
   }, [configImg, show, showName]);
@@ -40,9 +41,6 @@ function ShowCardGrid({ show, configImg }) {
           src={picture}
           alt={"error: " + showName}
         />
-        {picture.includes("https://via.placeholder.com") && (
-          <h3 className="text-white text-center text-lg mb-1">{showName}</h3>
-        )}
       </Link>
     </div>
   );

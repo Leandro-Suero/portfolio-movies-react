@@ -24,13 +24,14 @@ export const MovieDetailDesktop = ({ show, config }) => {
   /* picture & poster URL */
   useEffect(() => {
     let picture_url =
-      config.images?.base_url === undefined || show?.backdrop_path === null
+      config.images?.secure_base_url === undefined ||
+      show?.backdrop_path === null
         ? "https://via.placeholder.com/1000?text=error"
-        : `${config.images.base_url}${config.images.backdrop_sizes[3]}${show.backdrop_path}`;
+        : `${config.images.secure_base_url}${config.images.backdrop_sizes[3]}${show.backdrop_path}`;
     let poster_url =
-      config.images?.base_url === undefined || show?.poster_path === null
+      config.images?.secure_base_url === undefined || show?.poster_path === null
         ? "https://via.placeholder.com/1000?text=" + show.name
-        : `${config.images.base_url}${config.images.poster_sizes[4]}${show.poster_path}`;
+        : `${config.images.secure_base_url}${config.images.poster_sizes[4]}${show.poster_path}`;
 
     setPicture(picture_url);
     setPoster(poster_url);
