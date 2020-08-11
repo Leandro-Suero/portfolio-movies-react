@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
+import backArrow from "../../../assets/left-arrow.svg";
 import "./style.css";
 
-export default function index() {
+const SpaceNotFound = () => {
+  let history = useHistory();
   return (
     <div id="404">
       <div id="particles" className="particles">
@@ -22,7 +25,18 @@ export default function index() {
       </div>
 
       <div id="main">
-        <section>
+        <nav
+          className="bg-transparent fixed z-50"
+          style={{ top: "1rem", marginLeft: "1rem" }}
+        >
+          <img
+            src={backArrow}
+            alt="Back arrow"
+            className="h-8 cursor-pointer"
+            onClick={() => history.goBack()}
+          />
+        </nav>
+        <section className="w-screen min-h-screen flex flex-col items-center content-center justify-evenly">
           <h1>Page Not Found!</h1>
           <div>
             <span>4</span>
@@ -37,6 +51,7 @@ export default function index() {
           <div>
             <Link
               to="/"
+              style={{ animation: "pulse 2s infinite" }}
               className="inline-block text-center bg-teal-500 text-white rounded-full py-2 px-6 uppercase font-semibold text-base"
             >
               Back to Home Page
@@ -46,4 +61,5 @@ export default function index() {
       </div>
     </div>
   );
-}
+};
+export default SpaceNotFound;
