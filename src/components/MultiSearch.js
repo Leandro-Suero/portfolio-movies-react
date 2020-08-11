@@ -48,6 +48,7 @@ function MultiSearch({ searchShows }) {
             <input
               type="search"
               autoFocus="autofocus"
+              autoComplete="on"
               name=""
               id=""
               onKeyPress={(e) => handleKeyPress(e)}
@@ -67,6 +68,7 @@ function MultiSearch({ searchShows }) {
                 <option value="multi">All</option>
                 <option value="movie">Movies</option>
                 <option value="tv">Series</option>
+                <option value="person">Person</option>
               </select>
             </div>
           </div>

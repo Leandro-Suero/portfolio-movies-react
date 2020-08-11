@@ -14,6 +14,9 @@ function ShowCardGrid({ show, configImg }) {
   } else if (show.hasOwnProperty("title")) {
     showType = "movie";
     showName = show.title;
+  } else if (show.hasOwnProperty("known_for_department")) {
+    showType = "person";
+    showName = show.name;
   } else {
     showType = "tv";
     showName = show.name;
@@ -24,14 +27,22 @@ function ShowCardGrid({ show, configImg }) {
 
   //poster URL
   useEffect(() => {
-    let poster_url =
-      configImg.images?.secure_base_url === undefined ||
-      show?.poster_path === null
-        ? `https://via.placeholder.com/500?text=${showName}`
-        : `${configImg.images.secure_base_url}${configImg.images.poster_sizes[4]}${show.poster_path}`;
-
+    let poster_url = "https://via.placeholder.com/500?text=error";
+    if (showType === "person") {
+      poster_url =
+        configImg.images?.secure_base_url === undefined ||
+        show?.profile_path === null
+          ? `https://via.placeholder.com/500?text=${showName}`
+          : `${configImg.images.secure_base_url}${configImg.images.poster_sizes[4]}${show.profile_path}`;
+    } else {
+      poster_url =
+        configImg.images?.secure_base_url === undefined ||
+        show?.poster_path === null
+          ? `https://via.placeholder.com/500?text=${showName}`
+          : `${configImg.images.secure_base_url}${configImg.images.poster_sizes[4]}${show.poster_path}`;
+    }
     setPicture(poster_url);
-  }, [configImg, show, showName]);
+  }, [configImg, show, showName, showType]);
 
   return (
     <div>

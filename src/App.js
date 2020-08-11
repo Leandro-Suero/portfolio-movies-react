@@ -8,6 +8,7 @@ import Search from "./components/pages/Search";
 import SpaceNotFound from "./components/pages/SpaceNotFound";
 import MovieDetail from "./components/pages/MovieDetail";
 import SerieDetail from "./components/pages/SerieDetail";
+import PersonDetail from "./components/pages/PersonDetail";
 import "./assets/tailwind.output.css";
 
 function App({ store }) {
@@ -19,6 +20,7 @@ function App({ store }) {
           <Route exact path="/search" component={Search} />
           <Route exact path="/tv/:id" component={SerieDetail} />
           <Route exact path="/movie/:id" component={MovieDetail} />
+          <Route exact path="/person/:id" component={PersonDetail} />
           <Route component={SpaceNotFound} />
         </Switch>
       </Router>
