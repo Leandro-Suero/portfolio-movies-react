@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { getRecommendedMovies } from "../../redux/actions/movieActions";
-import ShowsSlider from "../ShowsSlider";
+import { getRecommendedMovies } from "../../../redux/actions/movieActions";
+import ShowsSlider from "../../ShowsSlider";
 
 const RecommendedMovies = ({ recommendedMovies, getRecommendedMovies }) => {
   // const dispatch = useDispatch();

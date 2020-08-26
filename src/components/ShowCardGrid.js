@@ -45,7 +45,7 @@ function ShowCardGrid({ show, configImg }) {
   }, [configImg, show, showName, showType]);
 
   return (
-    <div>
+    <div data-testid="show-card-grid">
       <Link to={`/${showType}/${show.id}`}>
         <img
           className="w-full h-full object-cover"

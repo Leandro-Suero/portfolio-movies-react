@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import ShowsGrid from "../ShowsGrid";
+import ShowsGrid from "../../ShowsGrid";
 
 export const SearchResults = ({ searchResults }) => {
   return (

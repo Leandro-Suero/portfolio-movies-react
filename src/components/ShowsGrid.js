@@ -9,6 +9,7 @@ function ShowsGrid({ shows, configImg }) {
     <div
       id="shows-search-results"
       className="my-5 grid grid-cols-1 md:grid-cols-4 gap-4"
+      data-testid="shows-grid"
     >
       {shows.map((show) => (
         <ShowCardGrid key={show.id} show={show} configImg={configImg} />
