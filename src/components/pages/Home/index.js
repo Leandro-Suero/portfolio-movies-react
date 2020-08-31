@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import Header from "../layout/Header";
-import Footer from "../layout/Footer";
-import MultiSearch from "../MultiSearch";
-import SearchResults from "../layout/SearchResults";
-import { getApiConfig } from "../../redux/actions/movieActions";
+import Header from "../../layout/Header";
+import Footer from "../../layout/Footer";
+import MultiSearch from "../../MultiSearch";
+import RecommendedMovies from "../../layout/RecommendedMovies";
+import RecommendedSeries from "../../layout/RecommendedSeries";
+import { getApiConfig } from "../../../redux/actions/movieActions";
 
-export const Search = ({ config, getApiConfig, searchResults }) => {
+export const Home = ({ config, getApiConfig }) => {
   useEffect(() => {
     //if no config already
     if (Object.keys(config).length === 0 && config.constructor === Object) {
@@ -24,32 +25,29 @@ export const Search = ({ config, getApiConfig, searchResults }) => {
         style={{ flex: "1 0 auto" }}
       >
         <MultiSearch />
-        {searchResults.length === 0 ? (
-          <h2 className="text-white text-base my-8 text-center">
-            There are no results for your query, sorry.
-          </h2>
-        ) : (
-          <SearchResults />
-        )}
+        <React.Fragment>
+          <br />
+          <RecommendedMovies />
+          <br />
+          <RecommendedSeries />
+        </React.Fragment>
       </div>
       <Footer className="flex-shrink-0" />
     </main>
   );
 };
 
-Search.propTypes = {
+Home.propTypes = {
   config: PropTypes.object.isRequired,
-  searchResults: PropTypes.array.isRequired,
   getApiConfig: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   config: state.shows.config,
-  searchResults: state.shows.searchResults,
 });
 
 const mapDispatchToProps = {
   getApiConfig,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

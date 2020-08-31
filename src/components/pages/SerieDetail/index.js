@@ -3,10 +3,12 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { getCurrentShow } from "../../redux/actions/movieActions";
-import { SerieDetailMobile } from "../SerieDetailMobile";
-import { SerieDetailDesktop } from "../SerieDetailDesktop";
-import { getApiConfig } from "../../redux/actions/movieActions";
+import {
+  getCurrentShow,
+  getApiConfig,
+} from "../../../redux/actions/movieActions";
+import { SerieDetailMobile } from "../../SerieDetailMobile";
+import { SerieDetailDesktop } from "../../SerieDetailDesktop";
 
 export const SerieDetail = ({
   currentShow,
@@ -15,16 +17,26 @@ export const SerieDetail = ({
   getApiConfig,
 }) => {
   let { id } = useParams();
+  const mobile_breakpoint = parseInt(process.env.REACT_APP_MOBILE_BREAKPOINT);
+  let isCurrent = useRef(true);
   const fixedShow = useRef();
   const fixedConfig = useRef();
-  const mobile_breakpoint = parseInt(process.env.REACT_APP_MOBILE_BREAKPOINT);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(true);
+
+  /* TO FLAG IF THE COMPONENT WAS UNMOUNTED AND AVOID SETTING STATE WITH CALLBACKS AFTER THIS */
+  useEffect(() => {
+    return () => {
+      isCurrent.current = false;
+    };
+  }, []);
 
   /* DEVICE TYPE HOOK */
   useEffect(() => {
     const updateDeviceType = () => {
-      setIsMobile(window.innerWidth < mobile_breakpoint ? true : false);
+      if (isCurrent.current) {
+        setIsMobile(window.innerWidth < mobile_breakpoint ? true : false);
+      }
     };
     //update device width
     updateDeviceType();
@@ -48,7 +60,9 @@ export const SerieDetail = ({
         fixedShow.current.id !== id
       ) {
         await getCurrentShow(id, "tv");
-        setLoading(false);
+        if (isCurrent.current) {
+          setLoading(false);
+        }
       }
     };
     //ask for serie details
@@ -70,7 +84,7 @@ export const SerieDetail = ({
   }, [getApiConfig]);
 
   return (
-    <div>
+    <div data-testid="serie-detail">
       {loading ? (
         <h2>Loading...</h2>
       ) : isMobile ? (

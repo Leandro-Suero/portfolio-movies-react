@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -13,12 +13,20 @@ export const MovieDetailMobile = ({ show, config }) => {
     currency: "USD",
   });
   const viewport_width = window.innerWidth;
+  let isCurrent = useRef(true);
   const [picture, setPicture] = useState(
     "https://via.placeholder.com/500?text=loading"
   );
   const [poster, setPoster] = useState(
     "https://via.placeholder.com/500?text=" + show.name
   );
+
+  /* TO FLAG IF THE COMPONENT WAS UNMOUNTED AND AVOID SETTING STATE WITH CALLBACKS AFTER THIS */
+  useEffect(() => {
+    return () => {
+      isCurrent.current = false;
+    };
+  }, []);
 
   /* picture & poster URL */
   useEffect(() => {
@@ -31,9 +39,10 @@ export const MovieDetailMobile = ({ show, config }) => {
       config.images?.secure_base_url === undefined || show?.poster_path === null
         ? "https://via.placeholder.com/500?text=" + show.name
         : `${config.images.secure_base_url}${config.images.poster_sizes[4]}${show.poster_path}`;
-
-    setPicture(picture_url);
-    setPoster(poster_url);
+    if (isCurrent.current) {
+      setPicture(picture_url);
+      setPoster(poster_url);
+    }
   }, [config, show]);
 
   return (
@@ -99,7 +108,7 @@ export const MovieDetailMobile = ({ show, config }) => {
         <h1 className="text-center text-3xl font-serif font-bold">
           {show.title}
         </h1>
-        <div className="flex justify-center my-2">
+        <div className="flex justify-center my-2" data-testid="stars-review">
           <ReactStarReview rating={show.vote_average / 2} />
         </div>
         {/* GENRE TAGS */}

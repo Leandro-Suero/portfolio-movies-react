@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -10,12 +10,20 @@ import backArrow from "../assets/left-arrow.svg";
 
 export const SerieDetailDesktop = ({ show, config }) => {
   let history = useHistory();
+  let isCurrent = useRef(true);
   const [picture, setPicture] = useState(
     "https://via.placeholder.com/1000?text=loading"
   );
   const [poster, setPoster] = useState(
     "https://via.placeholder.com/1000?text=" + show.name
   );
+
+  /* TO FLAG IF THE COMPONENT WAS UNMOUNTED AND AVOID SETTING STATE WITH CALLBACKS AFTER THIS */
+  useEffect(() => {
+    return () => {
+      isCurrent.current = false;
+    };
+  }, []);
 
   /* picture & poster URL */
   useEffect(() => {
@@ -28,9 +36,10 @@ export const SerieDetailDesktop = ({ show, config }) => {
       config.images?.secure_base_url === undefined || show?.poster_path === null
         ? "https://via.placeholder.com/1000?text=" + show.name
         : `${config.images.secure_base_url}${config.images.poster_sizes[4]}${show.poster_path}`;
-
-    setPicture(picture_url);
-    setPoster(poster_url);
+    if (isCurrent.current) {
+      setPicture(picture_url);
+      setPoster(poster_url);
+    }
   }, [config, show]);
 
   return (
@@ -85,7 +94,7 @@ export const SerieDetailDesktop = ({ show, config }) => {
             ))}
           </div>
           {/* STARS REVIEW */}
-          <div className="flex justify-center my-2">
+          <div className="flex justify-center my-2" data-testid="stars-review">
             <ReactStarReview
               rating={show.vote_average / 2}
               style={{
@@ -139,7 +148,7 @@ export const SerieDetailDesktop = ({ show, config }) => {
                 className="inline-block text-center bg-teal-500 text-white text-md rounded-full py-2 px-6 uppercase font-semibold text-base"
                 style={{ animation: "pulse-light 2s infinite" }}
               >
-                VISIT HOMEPAGE
+                VISIT WEBSITE
               </a>
             </div>
           ) : null}
