@@ -12,15 +12,15 @@ function MultiSearch({ searchShows }) {
 
   const getShows = () => {
     searchShows(query, showType);
+    if (history.location.pathname !== "/search") {
+      history.push("/search");
+    }
   };
 
   /* search submit on enter */
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       getShows();
-      if (history.location.pathname !== "/search") {
-        history.push("/search");
-      }
     }
   };
 

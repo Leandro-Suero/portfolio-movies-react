@@ -47,7 +47,6 @@ export const searchShows = (queryString, showType) => async (dispatch) => {
     const res = await apiCall(`/search/${showType}`, null, null, "GET", {
       query: queryString,
     });
-    console.log(res);
     dispatch({
       type: GET_SEARCH_RESULTS,
       payload: res.data.results,
