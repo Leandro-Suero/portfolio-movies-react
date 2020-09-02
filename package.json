@@ -27,6 +27,7 @@
     "build": "react-scripts build",
     "prod:build": "cross-env NODE_ENV=production npm run build",
     "test": "react-scripts test",
+    "test:coverage": "cross-env CI=true npm test -- --env=jsdom --coverage",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

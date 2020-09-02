@@ -39,6 +39,10 @@ describe("Testing Search Component", () => {
     );
     const searchElement = getByRole("searchbox");
     expect(searchElement).toBeInTheDocument();
+    const searchButton = getByRole("button");
+    expect(searchButton).toBeInTheDocument();
+    const searchSelect = getByRole("combobox");
+    expect(searchSelect).toBeInTheDocument();
   });
   test("Renders results not found", () => {
     const { getByText } = renderWithRedux(
