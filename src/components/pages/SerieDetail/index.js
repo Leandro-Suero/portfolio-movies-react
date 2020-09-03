@@ -8,6 +8,7 @@ import {
   getApiConfig,
 } from "../../../redux/actions/movieActions";
 import { useConfig } from "../../../hooks/useConfig";
+import { useDeviceType } from "../../../hooks/useDeviceType";
 import { SerieDetailMobile } from "../../SerieDetailMobile";
 import { SerieDetailDesktop } from "../../SerieDetailDesktop";
 
@@ -18,11 +19,9 @@ export const SerieDetail = ({
   getApiConfig,
 }) => {
   let { id } = useParams();
-  const mobile_breakpoint = parseInt(process.env.REACT_APP_MOBILE_BREAKPOINT);
   let isCurrent = useRef(true);
   const fixedShow = useRef();
   const [loading, setLoading] = useState(true);
-  const [isMobile, setIsMobile] = useState(true);
 
   /* TO FLAG IF THE COMPONENT WAS UNMOUNTED AND AVOID SETTING STATE WITH CALLBACKS AFTER THIS */
   useEffect(() => {
@@ -31,22 +30,7 @@ export const SerieDetail = ({
     };
   }, []);
 
-  /* DEVICE TYPE HOOK */
-  useEffect(() => {
-    const updateDeviceType = () => {
-      if (isCurrent.current) {
-        setIsMobile(window.innerWidth < mobile_breakpoint ? true : false);
-      }
-    };
-    //update device width
-    updateDeviceType();
-    window.addEventListener("resize", updateDeviceType);
-
-    return () => {
-      //undo event listener
-      window.removeEventListener("resize", updateDeviceType);
-    };
-  }, [isMobile, mobile_breakpoint]);
+  let isMobile = useDeviceType();
 
   /* FETCH SERIE DATA HOOK */
   useEffect(() => {
