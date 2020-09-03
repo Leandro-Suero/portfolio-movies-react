@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
 
 import {
   getCurrentShow,
@@ -9,6 +8,7 @@ import {
 } from "../../../redux/actions/movieActions";
 import { useConfig } from "../../../hooks/useConfig";
 import { useDeviceType } from "../../../hooks/useDeviceType";
+import { useShowData } from "../../../hooks/useShowData";
 import { SerieDetailMobile } from "../../SerieDetailMobile";
 import { SerieDetailDesktop } from "../../SerieDetailDesktop";
 
@@ -18,10 +18,7 @@ export const SerieDetail = ({
   config,
   getApiConfig,
 }) => {
-  let { id } = useParams();
   let isCurrent = useRef(true);
-  const fixedShow = useRef();
-  const [loading, setLoading] = useState(true);
 
   /* TO FLAG IF THE COMPONENT WAS UNMOUNTED AND AVOID SETTING STATE WITH CALLBACKS AFTER THIS */
   useEffect(() => {
@@ -31,28 +28,7 @@ export const SerieDetail = ({
   }, []);
 
   let isMobile = useDeviceType();
-
-  /* FETCH SERIE DATA HOOK */
-  useEffect(() => {
-    fixedShow.current = currentShow;
-  });
-  useEffect(() => {
-    const fetchData = async () => {
-      if (
-        (Object.keys(fixedShow.current).length === 0 &&
-          fixedShow.current.constructor === Object) ||
-        fixedShow.current.id !== id
-      ) {
-        await getCurrentShow(id, "tv");
-        if (isCurrent.current) {
-          setLoading(false);
-        }
-      }
-    };
-    //ask for serie details
-    fetchData();
-  }, [loading, id, getCurrentShow]);
-
+  let loading = useShowData(currentShow, getCurrentShow, "tv", isCurrent);
   useConfig(config, getApiConfig);
 
   return (
