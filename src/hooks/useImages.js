@@ -32,7 +32,7 @@ export const useImages = (show, config, isCurrent, size, posterSize = 4) => {
       setPoster(poster_url);
       setPersonPic(person_url);
     }
-  }, [config, show, isCurrent, size]);
+  }, [config, show, isCurrent, size, posterSize]);
 
   return { poster, picture, personPic };
 };
