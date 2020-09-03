@@ -1,27 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
+import { useImages } from "../hooks/useImages";
+
 const ShowCardSlider = ({ showType, show, configImg }) => {
-  const [picture, setPicture] = useState(
-    "https://via.placeholder.com/185?text=loading"
-  );
-
-  //poster URL
-  useEffect(() => {
-    let show_url =
-      configImg.images?.secure_base_url === undefined
-        ? "https://via.placeholder.com/185?text=loading"
-        : `${configImg.images.secure_base_url}${configImg.images.poster_sizes[2]}${show.poster_path}`;
-
-    setPicture(show_url);
-  }, [configImg, show]);
+  let isCurrent = useRef(true);
+  let { poster } = useImages(show, configImg, isCurrent, "185", 2);
 
   return (
     <div>
       <Link to={`${showType}/${show.id}`}>
         <img
-          src={picture}
+          src={poster}
           alt={show.title}
           className="object-cover max-w-md h-full"
         />

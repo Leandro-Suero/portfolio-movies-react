@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useImages = (show, config, isCurrent, size) => {
+export const useImages = (show, config, isCurrent, size, posterSize = 4) => {
   const [picture, setPicture] = useState(
     `https://via.placeholder.com/${size}?text=loading`
   );
@@ -21,12 +21,12 @@ export const useImages = (show, config, isCurrent, size) => {
     let poster_url =
       config.images?.secure_base_url === undefined || show?.poster_path === null
         ? `https://via.placeholder.com/${size}?text=${show.name}`
-        : `${config.images.secure_base_url}${config.images.poster_sizes[4]}${show.poster_path}`;
+        : `${config.images.secure_base_url}${config.images.poster_sizes[posterSize]}${show.poster_path}`;
     let person_url =
       config.images?.secure_base_url === undefined ||
       show?.profile_path === null
         ? `https://via.placeholder.com/${size}?text=${show.name}`
-        : `${config.images.secure_base_url}${config.images.poster_sizes[4]}${show.profile_path}`;
+        : `${config.images.secure_base_url}${config.images.poster_sizes[posterSize]}${show.profile_path}`;
     if (isCurrent.current) {
       setPicture(picture_url);
       setPoster(poster_url);

@@ -1,48 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useShowType } from "../hooks/useShowType";
+import { useImages } from "../hooks/useImages";
 
 function ShowCardGrid({ show, configImg }) {
-  let showType, showName;
-  if (show.hasOwnProperty("media_type")) {
-    showType = show.media_type;
-    if (showType === "movie") {
-      showName = show.title;
-    } else {
-      showName = show.name;
-    }
-  } else if (show.hasOwnProperty("title")) {
-    showType = "movie";
-    showName = show.title;
-  } else if (show.hasOwnProperty("known_for_department")) {
-    showType = "person";
-    showName = show.name;
-  } else {
-    showType = "tv";
-    showName = show.name;
-  }
-  const [picture, setPicture] = useState(
-    "https://via.placeholder.com/500?text=loading"
-  );
-
-  //poster URL
-  useEffect(() => {
-    let poster_url = "https://via.placeholder.com/500?text=error";
-    if (showType === "person") {
-      poster_url =
-        configImg.images?.secure_base_url === undefined ||
-        show?.profile_path === null
-          ? `https://via.placeholder.com/500?text=${showName}`
-          : `${configImg.images.secure_base_url}${configImg.images.poster_sizes[4]}${show.profile_path}`;
-    } else {
-      poster_url =
-        configImg.images?.secure_base_url === undefined ||
-        show?.poster_path === null
-          ? `https://via.placeholder.com/500?text=${showName}`
-          : `${configImg.images.secure_base_url}${configImg.images.poster_sizes[4]}${show.poster_path}`;
-    }
-    setPicture(poster_url);
-  }, [configImg, show, showName, showType]);
+  let isCurrent = useRef(true);
+  let { showType, showName } = useShowType(show);
+  let { poster, personPic } = useImages(show, configImg, isCurrent, "500");
+  let picture = showType === "person" ? personPic : poster;
 
   return (
     <div data-testid="show-card-grid">
