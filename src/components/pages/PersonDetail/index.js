@@ -8,6 +8,7 @@ import {
   getCurrentShow,
   getApiConfig,
 } from "../../../redux/actions/movieActions";
+import { useConfig } from "../../../hooks/useConfig";
 import backArrow from "../../../assets/left-arrow.svg";
 
 export const PersonDetail = ({
@@ -20,7 +21,6 @@ export const PersonDetail = ({
   let { id } = useParams();
   let isCurrent = useRef(true);
   const fixedPerson = useRef();
-  const fixedConfig = useRef();
   const [loading, setLoading] = useState(true);
   const [picture, setPicture] = useState(
     "https://via.placeholder.com/500?text=loading"
@@ -54,19 +54,7 @@ export const PersonDetail = ({
     fetchData();
   }, [loading, id, getCurrentShow]);
 
-  /* FETCH CONFIG HOOK */
-  useEffect(() => {
-    fixedConfig.current = config;
-  });
-  useEffect(() => {
-    //if no config already
-    if (
-      Object.keys(fixedConfig.current).length === 0 &&
-      fixedConfig.current.constructor === Object
-    ) {
-      getApiConfig();
-    }
-  }, [getApiConfig]);
+  useConfig(config, getApiConfig);
 
   /* picture URL */
   useEffect(() => {

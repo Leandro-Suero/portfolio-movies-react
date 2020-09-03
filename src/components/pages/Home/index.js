@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -8,14 +8,10 @@ import MultiSearch from "../../MultiSearch";
 import RecommendedMovies from "../../layout/RecommendedMovies";
 import RecommendedSeries from "../../layout/RecommendedSeries";
 import { getApiConfig } from "../../../redux/actions/movieActions";
+import { useConfig } from "../../../hooks/useConfig";
 
 export const Home = ({ config, getApiConfig }) => {
-  useEffect(() => {
-    //if no config already
-    if (Object.keys(config).length === 0 && config.constructor === Object) {
-      getApiConfig();
-    }
-  });
+  useConfig(config, getApiConfig);
 
   return (
     <main className="min-h-screen flex flex-col">

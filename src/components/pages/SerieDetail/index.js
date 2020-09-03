@@ -7,6 +7,7 @@ import {
   getCurrentShow,
   getApiConfig,
 } from "../../../redux/actions/movieActions";
+import { useConfig } from "../../../hooks/useConfig";
 import { SerieDetailMobile } from "../../SerieDetailMobile";
 import { SerieDetailDesktop } from "../../SerieDetailDesktop";
 
@@ -20,7 +21,6 @@ export const SerieDetail = ({
   const mobile_breakpoint = parseInt(process.env.REACT_APP_MOBILE_BREAKPOINT);
   let isCurrent = useRef(true);
   const fixedShow = useRef();
-  const fixedConfig = useRef();
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(true);
 
@@ -69,19 +69,7 @@ export const SerieDetail = ({
     fetchData();
   }, [loading, id, getCurrentShow]);
 
-  /* FETCH CONFIG HOOK */
-  useEffect(() => {
-    fixedConfig.current = config;
-  });
-  useEffect(() => {
-    //if no config already
-    if (
-      Object.keys(fixedConfig.current).length === 0 &&
-      fixedConfig.current.constructor === Object
-    ) {
-      getApiConfig();
-    }
-  }, [getApiConfig]);
+  useConfig(config, getApiConfig);
 
   return (
     <div data-testid="serie-detail">
