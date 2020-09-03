@@ -47,9 +47,12 @@ export const searchShows = (queryString, showType) => async (dispatch) => {
     const res = await apiCall(`/search/${showType}`, null, null, "GET", {
       query: queryString,
     });
+    //save only results with a poster (movie/tv) or profile (person) image
     dispatch({
       type: GET_SEARCH_RESULTS,
-      payload: res.data.results,
+      payload: res.data.results.filter(
+        (result) => result.profile_path !== null && result.poster_path !== null
+      ),
     });
   } catch (error) {
     console.log(error);
