@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 
+import { useImages } from "../hooks/useImages";
 import ReactStarReview from "react-star-review";
 import backArrow from "../assets/left-arrow.svg";
 
@@ -10,12 +11,6 @@ export const SerieDetailMobile = ({ show, config }) => {
   const viewport_width = window.innerWidth;
   let history = useHistory();
   let isCurrent = useRef(true);
-  const [picture, setPicture] = useState(
-    "https://via.placeholder.com/500?text=loading"
-  );
-  const [poster, setPoster] = useState(
-    "https://via.placeholder.com/500?text=" + show.name
-  );
 
   /* TO FLAG IF THE COMPONENT WAS UNMOUNTED AND AVOID SETTING STATE WITH CALLBACKS AFTER THIS */
   useEffect(() => {
@@ -24,22 +19,7 @@ export const SerieDetailMobile = ({ show, config }) => {
     };
   }, []);
 
-  /* picture & poster URL */
-  useEffect(() => {
-    let picture_url =
-      config.images?.secure_base_url === undefined ||
-      show?.backdrop_path === null
-        ? "https://via.placeholder.com/500?text=error"
-        : `${config.images.secure_base_url}${config.images.backdrop_sizes[1]}${show.backdrop_path}`;
-    let poster_url =
-      config.images?.secure_base_url === undefined || show?.poster_path === null
-        ? "https://via.placeholder.com/500?text=" + show.name
-        : `${config.images.secure_base_url}${config.images.poster_sizes[4]}${show.poster_path}`;
-    if (isCurrent.current) {
-      setPicture(picture_url);
-      setPoster(poster_url);
-    }
-  }, [config, show]);
+  let { poster, picture } = useImages(show, config, isCurrent, "500");
 
   return (
     <section className="bg-white min-h-screen relative flex flex-col content-center">

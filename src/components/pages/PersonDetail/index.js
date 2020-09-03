@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -9,6 +9,7 @@ import {
 } from "../../../redux/actions/movieActions";
 import { useConfig } from "../../../hooks/useConfig";
 import { useShowData } from "../../../hooks/useShowData";
+import { useImages } from "../../../hooks/useImages";
 import backArrow from "../../../assets/left-arrow.svg";
 
 export const PersonDetail = ({
@@ -19,9 +20,6 @@ export const PersonDetail = ({
 }) => {
   let history = useHistory();
   let isCurrent = useRef(true);
-  const [picture, setPicture] = useState(
-    "https://via.placeholder.com/500?text=loading"
-  );
 
   /* TO FLAG IF THE COMPONENT WAS UNMOUNTED AND AVOID SETTING STATE WITH CALLBACKS AFTER THIS */
   useEffect(() => {
@@ -31,28 +29,7 @@ export const PersonDetail = ({
   }, []);
   let loading = useShowData(currentShow, getCurrentShow, "person", isCurrent);
   useConfig(config, getApiConfig);
-
-  /* picture URL */
-  useEffect(() => {
-    let picture_url =
-      config.images?.secure_base_url === undefined ||
-      currentShow?.profile_path === null
-        ? "https://via.placeholder.com/500?text=" + currentShow.name
-        : `${config.images.secure_base_url}${config.images.poster_sizes[4]}${currentShow.profile_path}`;
-    if (isCurrent.current) {
-      setPicture(picture_url);
-    }
-  }, [config, currentShow]);
-  // useEffect(() => {
-  //   let picture_url =
-  //     config.images?.secure_base_url === undefined ||
-  //     fixedPerson.current?.profile_path === null
-  //       ? "https://via.placeholder.com/500?text=" + fixedPerson.current.name
-  //       : `${config.images.secure_base_url}${config.images.poster_sizes[4]}${fixedPerson.current.profile_path}`;
-  //   if (isCurrent.current) {
-  //     setPicture(picture_url);
-  //   }
-  // }, [config, currentShow]);
+  let { personPic } = useImages(currentShow, config, isCurrent, "500");
 
   return (
     <section className="text-center text-white" data-testid="person-detail">
@@ -74,7 +51,7 @@ export const PersonDetail = ({
         <div className="flex flex-col md:flex-row w-screen min-h-screen items-center content-center justify-evenly">
           <div className="w-1/2 md:w-3/12 mt-8 md:mt-0 md:px-4">
             <img
-              src={picture}
+              src={personPic}
               alt={`${currentShow.name} poster`}
               className="rounded-lg"
             />
