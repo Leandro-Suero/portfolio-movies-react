@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { getRecommendedSeries } from "../../../redux/actions/movieActions";
 import ShowsSlider from "../../ShowsSlider";
 
-const RecommendedSeries = ({ recommendedSeries, getRecommendedSeries }) => {
-  // const dispatch = useDispatch();
+const RecommendedSeries = () => {
+  const dispatch = useDispatch();
+  const recommendedSeries = useSelector(
+    (state) => state.shows.recommendedSeries
+  );
   //initial load for popular movies
   useEffect(() => {
     if (recommendedSeries.length === 0) {
-      getRecommendedSeries();
+      dispatch(getRecommendedSeries());
     }
   });
 
@@ -25,15 +27,4 @@ const RecommendedSeries = ({ recommendedSeries, getRecommendedSeries }) => {
   );
 };
 
-RecommendedSeries.propTypes = {
-  recommendedSeries: PropTypes.array,
-  getRecommendedSeries: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  recommendedSeries: state.shows.recommendedSeries,
-});
-
-const mapDispatchToProps = { getRecommendedSeries };
-
-export default connect(mapStateToProps, mapDispatchToProps)(RecommendedSeries);
+export default RecommendedSeries;

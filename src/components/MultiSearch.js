@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { searchShows } from "../redux/actions/movieActions";
 
-function MultiSearch({ searchShows }) {
+function MultiSearch() {
   let history = useHistory();
-  const [showType, setShowType] = useState("multi"); // [multi,movie,tv]
+  const [showType, setShowType] = useState("multi"); // [multi,movie,tv,person]
   const [query, setQuery] = useState("");
+  const dispatch = useDispatch();
 
   const getShows = () => {
-    searchShows(query, showType);
+    dispatch(searchShows(query, showType));
     if (history.location.pathname !== "/search") {
       history.push("/search");
     }
@@ -78,12 +78,4 @@ function MultiSearch({ searchShows }) {
   );
 }
 
-MultiSearch.propTypes = {
-  searchShows: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = { searchShows };
-
-export default connect(mapStateToProps, mapDispatchToProps)(MultiSearch);
+export default MultiSearch;
