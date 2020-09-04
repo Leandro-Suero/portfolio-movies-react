@@ -29,10 +29,10 @@ const ShowsSlider = ({ showType, title, shows }) => {
           // autoPlaySpeed={5000}
           partialVisible
           keyBoardControl={true}
-          customTransition="all .5"
-          transitionDuration={500}
+          customTransition="all .3"
+          transitionDuration={300}
           containerClass="carousel-container"
-          removeArrowOnDeviceType={["mobile"]}
+          removeArrowOnDeviceType={["tablet", "mobile"]}
           dotListClass=""
           itemClass=""
         >

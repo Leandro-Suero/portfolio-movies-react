@@ -19,22 +19,34 @@ export const useResponsive = () => {
       partialVisibilityGutter: 10,
     },
     tablet: {
-      breakpoint: { max: 900, min: 760 },
+      breakpoint: { max: 900, min: 770 },
       items: 3,
       slidesToSlide: 3,
       partialVisibilityGutter: 5,
     },
     mobilelg: {
-      breakpoint: { max: 760, min: 500 },
+      breakpoint: { max: 770, min: 520 },
       items: 2,
       slidesToSlide: 2,
-      partialVisibilityGutter: 10,
+      partialVisibilityGutter: 20,
     },
     mobile: {
-      breakpoint: { max: 500, min: 0 },
+      breakpoint: { max: 520, min: 430 },
+      items: 2,
+      slidesToSlide: 2,
+      partialVisibilityGutter: 5,
+    },
+    mobilesm: {
+      breakpoint: { max: 430, min: 360 },
       items: 1,
       slidesToSlide: 1,
-      partialVisibilityGutter: 60,
+      partialVisibilityGutter: 140,
+    },
+    mobilexsm: {
+      breakpoint: { max: 360, min: 0 },
+      items: 1,
+      slidesToSlide: 1,
+      partialVisibilityGutter: 30,
     },
   };
 };

@@ -41,3 +41,10 @@ body {
     box-shadow: 0 0 0 0 rgba(178, 245, 234, 0);
   }
 }
+
+.react-multiple-carousel__arrow--left {
+  left: calc(1% + 1px) !important;
+}
+.react-multiple-carousel__arrow--right {
+  right: calc(1% + 1px) !important;
+}
