@@ -7,11 +7,11 @@ import {
 } from "../actionTypes";
 import { apiCall } from "../api";
 
-//apiCall = (url, data, headers, method, extraParams)
+//apiCall = (method, url, data, headers, extraParams)
 
 export const getApiConfig = () => async (dispatch) => {
   try {
-    const res = await apiCall("/configuration", null, null, "GET", {});
+    const res = await apiCall("GET", "/configuration", null, null, {});
     dispatch({
       type: GET_MOVIES_CONFIG,
       payload: res.data,
@@ -22,7 +22,7 @@ export const getApiConfig = () => async (dispatch) => {
 };
 export const getRecommendedMovies = () => async (dispatch) => {
   try {
-    const res = await apiCall("/movie/popular", null, null, "GET", {});
+    const res = await apiCall("GET", "/movie/popular", null, null, {});
     dispatch({
       type: GET_RECOMMENDED_MOVIES,
       payload: res.data.results,
@@ -33,7 +33,7 @@ export const getRecommendedMovies = () => async (dispatch) => {
 };
 export const getRecommendedSeries = () => async (dispatch) => {
   try {
-    const res = await apiCall("/tv/popular", null, null, "GET", {});
+    const res = await apiCall("GET", "/tv/popular", null, null, {});
     dispatch({
       type: GET_RECOMMENDED_SERIES,
       payload: res.data.results,
@@ -44,7 +44,7 @@ export const getRecommendedSeries = () => async (dispatch) => {
 };
 export const searchShows = (queryString, showType) => async (dispatch) => {
   try {
-    const res = await apiCall(`/search/${showType}`, null, null, "GET", {
+    const res = await apiCall("GET", `/search/${showType}`, null, null, {
       query: queryString,
     });
     //save only results with a poster (movie/tv) or profile (person) image
@@ -60,7 +60,7 @@ export const searchShows = (queryString, showType) => async (dispatch) => {
 };
 export const getCurrentShow = (id, showType) => async (dispatch) => {
   try {
-    const res = await apiCall(`/${showType}/${id}`, null, null, "GET", {});
+    const res = await apiCall("GET", `/${showType}/${id}`, null, null, {});
     dispatch({
       type: GET_SHOW_DETAILS,
       payload: res.data,
