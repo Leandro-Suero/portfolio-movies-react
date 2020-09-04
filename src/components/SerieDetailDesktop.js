@@ -1,15 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
 
-import Logo from "../components/layout/Logo";
 import { useImages } from "../hooks/useImages";
 import ReactStarReview from "react-star-review";
-import backArrow from "../assets/left-arrow.svg";
+import BackNav from "../components/BackNav";
 
 export const SerieDetailDesktop = ({ show, config }) => {
-  let history = useHistory();
   let isCurrent = useRef(true);
 
   /* TO FLAG IF THE COMPONENT WAS UNMOUNTED AND AVOID SETTING STATE WITH CALLBACKS AFTER THIS */
@@ -24,21 +20,7 @@ export const SerieDetailDesktop = ({ show, config }) => {
   return (
     <section className="min-vw-100 min-h-screen">
       {/* NAVIGATION */}
-      <nav
-        className="bg-transparent fixed z-50 flex"
-        style={{ top: "1rem", marginLeft: "1rem" }}
-      >
-        <img
-          src={backArrow}
-          alt="Back arrow"
-          className="h-8 cursor-pointer rounded-full mr-4"
-          onClick={() => history.goBack()}
-          style={{ animation: "pulse-light 2s infinite" }}
-        />
-        <Link to="/">
-          <Logo className="" />
-        </Link>
-      </nav>
+      <BackNav homeLink={true} />
       {/* BACKGROUND */}
       <div className="fixed">
         <img

@@ -1,15 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
 
-import Logo from "../components/layout/Logo";
 import { useImages } from "../hooks/useImages";
 import ReactStarReview from "react-star-review";
-import backArrow from "../assets/left-arrow.svg";
+import BackNav from "../components/BackNav";
 
 export const MovieDetailDesktop = ({ show, config }) => {
-  let history = useHistory();
   const moneyFormater = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -28,21 +24,7 @@ export const MovieDetailDesktop = ({ show, config }) => {
   return (
     <section className="min-vw-100 min-h-screen">
       {/* NAVIGATION */}
-      <nav
-        className="bg-transparent fixed z-50 flex"
-        style={{ top: "1rem", marginLeft: "1rem" }}
-      >
-        <img
-          src={backArrow}
-          alt="Back arrow"
-          className="h-8 cursor-pointer rounded-full mr-4"
-          onClick={() => history.goBack()}
-          style={{ animation: "pulse-light 2s infinite" }}
-        />
-        <Link to="/">
-          <Logo className="" />
-        </Link>
-      </nav>
+      <BackNav homeLink={true} />
       {/* BACKGROUND */}
       <div className="fixed">
         <img
@@ -56,7 +38,7 @@ export const MovieDetailDesktop = ({ show, config }) => {
         <img
           src={poster}
           alt={`${show.name} poster`}
-          className="relative w-1/4 h-auto rounded-lg border-white z-50"
+          className="relative w-1/4 h-auto rounded-lg border-white z-40"
           style={{ borderWidth: "1rem" }}
         />
         <div className="w-4/6 z-10 flex flex-col items-center content-center justify-evenly">

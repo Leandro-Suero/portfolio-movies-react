@@ -1,13 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { useHistory } from "react-router-dom";
 
 import { useImages } from "../hooks/useImages";
 import ReactStarReview from "react-star-review";
-import backArrow from "../assets/left-arrow.svg";
+import BackNav from "../components/BackNav";
 
 export const MovieDetailMobile = ({ show, config }) => {
-  let history = useHistory();
   const moneyFormater = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
@@ -27,17 +25,7 @@ export const MovieDetailMobile = ({ show, config }) => {
   return (
     <section className="bg-white min-h-screen relative flex flex-col content-center">
       {/* NAVIGATION */}
-      <nav
-        className="bg-transparent fixed z-50"
-        style={{ top: "1rem", marginLeft: "1rem" }}
-      >
-        <img
-          src={backArrow}
-          alt="Back arrow"
-          className="h-8 cursor-pointer"
-          onClick={() => history.goBack()}
-        />
-      </nav>
+      <BackNav animation={false} />
       {/* BACKGROUND */}
       <div className="fixed">
         <img src={picture} alt="Backdrop" className="z-0" />
@@ -54,7 +42,7 @@ export const MovieDetailMobile = ({ show, config }) => {
         {/* POSTER */}
         <div
           id="overlay-poster"
-          className="bg-transparent z-50 "
+          className="bg-transparent z-40 "
           style={{ paddingTop: `${viewport_width / 4}px` }}
         >
           <img
