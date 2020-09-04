@@ -27,8 +27,8 @@ export const MovieDetailMobile = ({ show, config }) => {
       {/* NAVIGATION */}
       <BackNav animation={false} />
       {/* BACKGROUND */}
-      <div className="fixed">
-        <img src={picture} alt="Backdrop" className="z-0" />
+      <div className="fixed w-full">
+        <img src={picture} alt="Backdrop" className="z-0 w-full" />
         <div
           id="white-gradient"
           className="absolute h-10 w-full"
