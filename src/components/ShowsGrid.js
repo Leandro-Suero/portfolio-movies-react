@@ -1,10 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
 import ShowCardGrid from "./ShowCardGrid";
 
-function ShowsGrid({ shows, configImg }) {
+function ShowsGrid({ shows }) {
+  const configImg = useSelector((state) => state.shows.config);
+
   return (
     <div
       id="shows-search-results"
@@ -19,14 +21,7 @@ function ShowsGrid({ shows, configImg }) {
 }
 
 ShowsGrid.propTypes = {
-  configImg: PropTypes.object.isRequired,
   shows: PropTypes.array.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  configImg: state.shows.config,
-});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShowsGrid);
+export default ShowsGrid;

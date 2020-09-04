@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 //carousel library
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -8,9 +8,10 @@ import "react-multi-carousel/lib/styles.css";
 import ShowCardSlider from "./ShowCardSlider";
 import { useResponsive } from "../hooks/useResponsive";
 
-const ShowsSlider = ({ showType, title, shows, configImg }) => {
+const ShowsSlider = ({ showType, title, shows }) => {
   //responsive breakpoints and configuration for the carousel
   const responsive = useResponsive();
+  const configImg = useSelector((state) => state.shows.config);
 
   return (
     <React.Fragment>
@@ -53,13 +54,6 @@ ShowsSlider.propTypes = {
   showType: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   shows: PropTypes.array.isRequired,
-  configImg: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  configImg: state.shows.config,
-});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ShowsSlider);
+export default ShowsSlider;
