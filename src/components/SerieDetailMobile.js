@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import { useImages } from "../hooks/useImages";
@@ -132,8 +131,4 @@ SerieDetailMobile.propTypes = {
   config: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = (state) => ({});
-
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SerieDetailMobile);
+export default SerieDetailMobile;
