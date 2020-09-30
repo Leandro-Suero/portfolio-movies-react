@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# MOVIES & SERIES PWA - [View Demo](https://moviseries.netlify.app/)
+
+![Image of the website](https://leandro-suero.github.io/img/Moviseries.png)
 
 ## Available Scripts
 
@@ -9,23 +11,22 @@ In the project directory, you can run:
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm test:coverage`
+
+Runs every test and displays a table with the coverage for each file in the project.<br />
 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+### `npm run prod:build`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Calls the `build` script with an explicit production flag to force the purge of the tailwindcss output css file.
 
 ### `npm run eject`
 
@@ -37,32 +38,19 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Resources
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. [Create React App](https://github.com/facebook/create-react-app) to bootstrap the project.
+2. [Tailwind CSS](https://tailwindcss.com/) for faster and easier styling.
+3. [The TMDB API](https://www.themoviedb.org/documentation/api) for movies, person and tv show's information.
+4. [Redux](https://www.npmjs.com/package/redux) to handle global state.
+5. [Redux Thunk](https://www.npmjs.com/package/redux-thunk) to call the API on the action creators.
+6. [Redux Devtools Extension](https://www.npmjs.com/package/redux-devtools-extension) to inspect the redux store in the browser. This is also available in the production enviroment to peek if you want to.
+7. [React Router Dom](https://www.npmjs.com/package/react-router-dom) to handle routing for the shows/person and 404 page.
+8. [React Testing Library](https://www.npmjs.com/package/@testing-library/react) to handle testing.
+9. [React Multi Carousel](https://www.npmjs.com/package/react-multi-carousel) to display the shows on the main page.
+10. [React Star Review](https://www.npmjs.com/package/react-star-review) to display the show's rating given by the people.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Code released under the MIT license.
