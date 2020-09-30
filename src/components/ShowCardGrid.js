@@ -7,7 +7,7 @@ import { useImages } from "../hooks/useImages";
 function ShowCardGrid({ show, configImg }) {
   let isCurrent = useRef(true);
   let { showType, showName } = useShowType(show);
-  let { poster, personPic } = useImages(show, configImg, isCurrent, "500");
+  let { poster, personPic } = useImages(show, configImg, isCurrent, "334x500");
   let picture = showType === "person" ? personPic : poster;
 
   return (

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 
 export const useImages = (show, config, isCurrent, size, posterSize = 4) => {
+  const desktop_size = "1920x1080";
   const [picture, setPicture] = useState(
-    `https://via.placeholder.com/${size}?text=loading`
+    `https://via.placeholder.com/${desktop_size}?text=loading`
   );
   const [poster, setPoster] = useState(
     `https://via.placeholder.com/${size}?text=${show.name}`
@@ -16,7 +17,7 @@ export const useImages = (show, config, isCurrent, size, posterSize = 4) => {
     let picture_url =
       config.images?.secure_base_url === undefined ||
       show?.backdrop_path === null
-        ? `https://via.placeholder.com/${size}?text=error`
+        ? `https://via.placeholder.com/${desktop_size}?text=error`
         : `${config.images.secure_base_url}${config.images.backdrop_sizes[1]}${show.backdrop_path}`;
     let poster_url =
       config.images?.secure_base_url === undefined || show?.poster_path === null

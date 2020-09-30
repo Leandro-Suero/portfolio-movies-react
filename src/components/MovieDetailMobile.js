@@ -20,7 +20,7 @@ export const MovieDetailMobile = ({ show, config }) => {
     };
   }, []);
 
-  let { poster, picture } = useImages(show, config, isCurrent, "500");
+  let { poster, picture } = useImages(show, config, isCurrent, "334x500");
 
   return (
     <section className="bg-white min-h-screen relative flex flex-col content-center">

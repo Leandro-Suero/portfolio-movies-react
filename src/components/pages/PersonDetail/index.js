@@ -29,7 +29,7 @@ export const PersonDetail = ({
   }, []);
   let loading = useShowData(currentShow, getCurrentShow, "person", isCurrent);
   useConfig(config, getApiConfig);
-  let { personPic } = useImages(currentShow, config, isCurrent, "500");
+  let { personPic } = useImages(currentShow, config, isCurrent, "334x500");
 
   return (
     <section className="text-center text-white" data-testid="person-detail">

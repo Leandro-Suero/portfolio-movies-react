@@ -19,7 +19,7 @@ export const MovieDetailDesktop = ({ show, config }) => {
     };
   }, []);
 
-  let { poster, picture } = useImages(show, config, isCurrent, "1000");
+  let { poster, picture } = useImages(show, config, isCurrent, "667x1000");
 
   return (
     <section className="min-vw-100 min-h-screen">
