@@ -17,7 +17,7 @@ export const getApiConfig = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 export const getRecommendedMovies = () => async (dispatch) => {
@@ -28,7 +28,7 @@ export const getRecommendedMovies = () => async (dispatch) => {
       payload: res.data.results,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 export const getRecommendedSeries = () => async (dispatch) => {
@@ -39,7 +39,7 @@ export const getRecommendedSeries = () => async (dispatch) => {
       payload: res.data.results,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 export const searchShows = (queryString, showType) => async (dispatch) => {
@@ -55,7 +55,7 @@ export const searchShows = (queryString, showType) => async (dispatch) => {
       ),
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 export const getCurrentShow = (id, showType) => async (dispatch) => {
@@ -67,6 +67,6 @@ export const getCurrentShow = (id, showType) => async (dispatch) => {
     });
     return res.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
