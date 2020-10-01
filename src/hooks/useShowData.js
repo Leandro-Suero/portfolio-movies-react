@@ -1,10 +1,11 @@
 import { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 export const useShowData = (currentShow, getCurrentShow, type, isCurrent) => {
   const fixedShow = useRef();
   const [loading, setLoading] = useState(true);
   let { id } = useParams();
+  let history = useHistory();
 
   useEffect(() => {
     fixedShow.current = currentShow;
@@ -16,7 +17,10 @@ export const useShowData = (currentShow, getCurrentShow, type, isCurrent) => {
           fixedShow.current.constructor === Object) ||
         fixedShow.current.id !== id
       ) {
-        await getCurrentShow(id, type);
+        const showFetched = await getCurrentShow(id, type);
+        if (!showFetched) {
+          history.push("/404");
+        }
         if (isCurrent.current) {
           setLoading(false);
         }
@@ -24,6 +28,7 @@ export const useShowData = (currentShow, getCurrentShow, type, isCurrent) => {
     };
     //ask for serie/movie/person details
     fetchData();
-  }, [loading, id, getCurrentShow, type, isCurrent]);
+  }, [loading, id, getCurrentShow, type, isCurrent, history]);
+
   return loading;
 };

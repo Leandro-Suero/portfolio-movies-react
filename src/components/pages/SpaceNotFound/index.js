@@ -1,12 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 
-import backArrow from "../../../assets/left-arrow.svg";
 import "./style.css";
 
 const SpaceNotFound = () => {
-  let history = useHistory();
   return (
     <div id="404">
       <div id="particles" className="particles">
@@ -25,17 +22,6 @@ const SpaceNotFound = () => {
       </div>
 
       <div id="main">
-        <nav
-          className="bg-transparent fixed z-50"
-          style={{ top: "1rem", marginLeft: "1rem" }}
-        >
-          <img
-            src={backArrow}
-            alt="Back arrow"
-            className="h-8 cursor-pointer"
-            onClick={() => history.goBack()}
-          />
-        </nav>
         <section className="w-screen min-h-screen flex flex-col items-center content-center justify-evenly">
           <h1>Page Not Found!</h1>
           <div>

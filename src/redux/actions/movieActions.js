@@ -68,5 +68,6 @@ export const getCurrentShow = (id, showType) => async (dispatch) => {
     return res.data;
   } catch (error) {
     console.error(error);
+    return false;
   }
 };
