@@ -20,7 +20,7 @@ const Tags = ({ tags, color }) => {
 };
 
 Tags.propTypes = {
-  tags: PropTypes.object.isRequired,
+  tags: PropTypes.array.isRequired,
   color: PropTypes.string.isRequired,
 };
 
