@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useImages } from "../hooks/useImages";
 import ReactStarReview from "react-star-review";
 import BackNav from "../components/BackNav";
+import Tags from "./Tags";
 
 export const SerieDetailMobile = ({ show, config }) => {
   const viewport_width = window.innerWidth;
@@ -82,16 +83,7 @@ export const SerieDetailMobile = ({ show, config }) => {
           <ReactStarReview rating={show.vote_average / 2} />
         </div>
         {/* GENRE TAGS */}
-        <div className="flex items-center justify-center my-4 text-center">
-          {show.genres.map((genre) => (
-            <span
-              key={genre.id}
-              className="badge-teal inline-block bg-teal-200 text-teal-600 text-xs rounded-full mx-1 px-2 uppercase font-semibold tracking-wide"
-            >
-              {genre.name}
-            </span>
-          ))}
-        </div>
+        <Tags tags={show.genres} color="teal" />
         {/* OVERVIEW */}
         <div className="text-center my-2">{show.overview}</div>
 

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useImages } from "../hooks/useImages";
 import ReactStarReview from "react-star-review";
 import BackNav from "../components/BackNav";
+import Tags from "./Tags";
 
 export const MovieDetailDesktop = ({ show, config }) => {
   const moneyFormater = new Intl.NumberFormat("en-US", {
@@ -48,16 +49,7 @@ export const MovieDetailDesktop = ({ show, config }) => {
             </h1>
           </div>
           {/* GENRE TAGS */}
-          <div className="flex items-center justify-center my-4 text-center">
-            {show.genres.map((genre) => (
-              <span
-                key={genre.id}
-                className="badge-teal inline-block bg-teal-200 text-teal-600 rounded-full mx-1 px-2 uppercase font-semibold tracking-wide text-xs"
-              >
-                {genre.name}
-              </span>
-            ))}
-          </div>
+          <Tags tags={show.genres} color="teal" />
           {/* STARS REVIEW */}
           <div className="flex justify-center my-2" data-testid="stars-review">
             <ReactStarReview

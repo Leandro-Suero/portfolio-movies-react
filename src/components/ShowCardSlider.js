@@ -6,7 +6,7 @@ import { useImages } from "../hooks/useImages";
 
 const ShowCardSlider = ({ showType, show, configImg }) => {
   let isCurrent = useRef(true);
-  let { poster } = useImages(show, configImg, isCurrent, "124x185", 2);
+  let { poster } = useImages(show, configImg, isCurrent, "185x278", 2);
 
   return (
     <div>
