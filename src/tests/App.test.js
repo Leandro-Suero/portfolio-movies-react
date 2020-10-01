@@ -97,9 +97,7 @@ describe("Integration test: search serie flow", () => {
     const homepageLink = await findByText(/back to home page/i);
     expect(homepageLink).toBeInTheDocument();
 
-    const backArrow = getByAltText("Back arrow");
-    expect(backArrow).toBeInTheDocument();
-    fireEvent.click(backArrow);
+    fireEvent.click(homepageLink);
 
     /* homepage */
     const homeText = await findByText(/Recommended Movies/i);

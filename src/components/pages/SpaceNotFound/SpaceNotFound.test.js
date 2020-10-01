@@ -4,15 +4,6 @@ import { BrowserRouter as Router } from "react-router-dom";
 import SpaceNotFound from ".";
 
 describe("Testing SpaceNotFound Component", () => {
-  test("Render nav", () => {
-    const { getByRole } = render(
-      <Router>
-        <SpaceNotFound />
-      </Router>
-    );
-    const navElement = getByRole("navigation");
-    expect(navElement).toBeInTheDocument();
-  });
   test("Render title Page Not Found!", () => {
     const { getByText } = render(
       <Router>
